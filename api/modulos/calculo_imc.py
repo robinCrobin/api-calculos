@@ -1,4 +1,4 @@
-def contaImc(altura,peso):
+def conta_imc(altura,peso):
     #Cálculo IMC
     imc = round((peso/(altura**2)),1)
     #Classificação do cálculo

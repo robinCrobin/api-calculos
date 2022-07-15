@@ -1,4 +1,13 @@
 from modulos import calculoImc
-imc = calculoImc.calculoImcClass
+from modulos import calculoFerias
 
-imc.initImc()
+def getCalculoImc(altura,peso):
+    print(calculoImc.contaImc(altura,peso))
+
+def postCalculoFerias():
+    salario = calculoFerias.bodyFerias['Salario']
+    meses = calculoFerias.bodyFerias['Meses trabalhados']
+    print(calculoFerias.contaFerias(salario,meses))
+
+#getCalculoImc('teste',56)
+postCalculoFerias()

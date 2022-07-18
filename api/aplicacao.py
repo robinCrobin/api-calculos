@@ -1,25 +1,54 @@
 from modulos.calculo_imc import conta_imc
-from modulos.calculo_ferias import salario, meses, conta_ferias
-from modulos.calculo_rendimentos import rendimento
+from modulos.calculo_ferias import conta_ferias
+from modulos.calculo_rendimentos import fun_rendimento
 from modulos.calculo_parametros import parametros
 
-def get_calculo_imc(altura, peso):
+event = {
+  "queryStringParameters": {
+    'altura': 1.56,
+    'peso': 48,
+    'rendimento': 3000,
+    'valor1': 40,
+    'valor2': 20,
+    'calculo': 'subtracao'
+  },
+  "pathParameters": {
+    "valor-rendimento": 1000
+  },
+ 
+  "body": {'Salário': 1200.00,
+  'Meses trabalhados': 4} ,
+}
+
+def get_calculo_imc(event, context):
+    query_parametros = event['queryStringParameters']
+    altura = query_parametros['altura']
+    peso = query_parametros['peso']
+
     return conta_imc(altura, peso)
 
+def post_calculo_ferias(event, context):
+    body = event['body']
+    salario = body['Salário']
+    meses = body['Meses trabalhados']
 
-def post_calculo_ferias():
     return conta_ferias(salario, meses)
 
+def get_rendimento(event, context):
+    path_parametro = event['pathParameters']
+    rendimento = path_parametro['valor-rendimento']
 
-def get_rendimento(invst_inicial):
-    return rendimento(invst_inicial)
+    return fun_rendimento(rendimento)
 
+def get_parametros(event, context):
+    query_parametros = event['queryStringParameters']
+    valor1 = query_parametros['valor1']
+    valor2 = query_parametros['valor2']
+    calculo = query_parametros['calculo']
 
-def get_parametros(vl1, vl2, operacao):
-    return parametros(vl1, vl2, operacao)
+    return parametros(valor1, valor2, calculo)
 
-
-print(get_calculo_imc(1.60,56))
-print(post_calculo_ferias())
-print(get_rendimento(3000))
-print(get_parametros(10,2,'multiplicacao'))
+print(get_calculo_imc(event, 0))
+print(post_calculo_ferias(event, 0))
+print(get_rendimento(event, 0))
+print(get_parametros(event, 0))

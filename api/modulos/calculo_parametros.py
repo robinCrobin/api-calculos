@@ -30,4 +30,4 @@ def parametros(vl1,vl2,operacao):
     def verificar_operacao(operacao):
         return lst_operacoes.get(operacao, default)()
 
-    print(verificar_operacao(operacao))
+    return verificar_operacao(operacao)

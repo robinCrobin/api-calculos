@@ -19,7 +19,7 @@ def get_parametros(vl1, vl2, operacao):
     return parametros(vl1, vl2, operacao)
 
 
-# print(get_calculo_imc('teste',56))
-#print(post_calculo_ferias())
-# print(get_rendimento(3000))
-get_parametros(10,2,'multiplicacao')
+print(get_calculo_imc(1.60,56))
+print(post_calculo_ferias())
+print(get_rendimento(3000))
+print(get_parametros(10,2,'multiplicacao'))
